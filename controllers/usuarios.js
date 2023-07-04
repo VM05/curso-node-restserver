@@ -18,8 +18,6 @@ const usuariosGet = async (req = request, res = response) => {
 };
 
 const usuariosPost = async (req, res = response) => {
-  //Con la constante errors rescatamos el error que devuelve el express-validator, utilizamos el metodo validationResult y rescatamos el error desde el request(req)
-
   const { nombre, correo, password, rol } = req.body;
   //creamos una instancia de usuario importando el modelo Usuario (U mayuscula ya que es un standard)
   const usuario = new Usuario({ nombre, correo, password, rol });
@@ -66,7 +64,8 @@ const usuariosDelete = async (req, res = response) => {
   // const usuario = await Usuario.findByIdAndDelete(id);
 
   const usuario = await Usuario.findByIdAndUpdate(id, { estado: false });
-  res.json(usuario);
+
+  res.json({ usuario });
 };
 
 module.exports = {
